@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - nginx-log-volume:/var/log/nginx
+  dcs-logwatcher:
+    build: ./
+    image: dcs-logwatcher
+    volumes:
+      - nginx-log-volume:/var/log/nginx
+
+volumes:
+  nginx-log-volume:
